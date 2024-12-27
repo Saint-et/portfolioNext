@@ -11,14 +11,7 @@ import {
   imgDefaultUser,
   User,
 } from "@/public/assets/data/Data";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
@@ -31,22 +24,17 @@ import {
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
-  LuArrowDownUp,
   LuArrowUpFromDot,
   LuBadge,
   LuBookOpen,
   LuClock,
   LuGithub,
-  LuImagePlus,
   LuMail,
   LuMapPin,
   LuMenu,
-  LuPen,
   LuPhone,
-  LuRefreshCcw,
   LuSunMoon,
 } from "react-icons/lu";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useEffect, useRef, useState } from "react";
 import { Switch } from "@/components/ui/switch";
@@ -61,13 +49,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import CarouselVideo from "./(components)/carousel-video";
-import { Input } from "@/components/ui/input";
 import ViewerImage from "./(components)/viewer-image";
-import { Slider } from "@/components/ui/slider";
-import { RemoveScroll } from "react-remove-scroll";
-import dynamic from "next/dynamic";
-import * as faceapi from "face-api.js";
-import toast from "react-hot-toast";
 import LoaderApp from "./(components)/loader";
 import { ArrowRight } from "lucide-react";
 import DialogInfoRealisations from "./(components)/dialog-info-realisation";
@@ -87,7 +69,6 @@ interface SystemSettingInterface {
 }
 
 export default function Home() {
-  const [systemDetectMobile, setSystemDetectMobile] = useState<boolean>(false);
   const [isSystemSetting, setSystemSetting] = useState<SystemSettingInterface>({
     theme: "",
     pseudo: "defaultUser",
@@ -100,14 +81,10 @@ export default function Home() {
     open: null,
   });
 
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const fileInputRef2 = useRef<HTMLInputElement | null>(null);
-
   const AProposDeMoiRef = useRef<HTMLDivElement | null>(null);
   const MesCompetencesRef = useRef<HTMLDivElement | null>(null);
   const TopProjetRef = useRef<HTMLDivElement | null>(null);
   const MesRealisationsRef = useRef<HTMLDivElement | null>(null);
-  const SandBoxRef = useRef<HTMLDivElement | null>(null);
   const Menu = [
     {
       title: "À propos de moi",
@@ -137,13 +114,6 @@ export default function Home() {
           behavior: "smooth",
         }),
     },
-    {
-      title: "SandBox",
-      click: () =>
-        SandBoxRef.current?.scrollIntoView({
-          behavior: "smooth",
-        }),
-    },
   ];
   const MenuReseaux = [
     {
@@ -166,18 +136,14 @@ export default function Home() {
         }));
       },
     },
-    { title: "Github", icon: LuGithub, click: () => {} },
+    {
+      title: "Github",
+      icon: LuGithub,
+      click: () => {
+        window.open("https://github.com/Saint-et", "_blank");
+      },
+    },
   ];
-
-  const handleResetSystem = () => {
-    setSystemSetting((prev: SystemSettingInterface) => ({
-      ...prev,
-      pseudo: "defaultUser",
-      userPicture: imgDefaultUser.src,
-      pictureCover: bannerBg.src,
-      cropY: 50,
-    }));
-  };
 
   const [srcImg, setSrcImg] = useState<string>("");
 
@@ -197,229 +163,19 @@ export default function Home() {
     root.className = theme;
   }, []);
 
-  const handleButtonClickImport = (ref: HTMLInputElement | null) => {
-    if (ref) {
-      ref.click();
-    }
-  };
-
-  const handleFileChangeImport = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const files = event.target.files;
-
-    if (!files || files.length === 0) {
-      console.error("Aucun fichier sélectionné.");
-      return;
-    }
-
-    const file = files[0];
-    if (!file.type.startsWith("image/")) {
-      console.error("Le fichier sélectionné n'est pas une image.");
-      return;
-    }
-
-    const url = URL.createObjectURL(file);
-    return url;
-  };
-
-  const handleChangeCover = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const img = await handleFileChangeImport(e);
-
-    if (img) {
-      setSystemSetting((prev: SystemSettingInterface) => ({
-        ...prev,
-        pictureCover: img,
-      }));
-    }
-  };
-  const handleChangeUser = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const img = await handleFileChangeImport(e);
-
-    if (img) {
-      setSystemSetting((prev: SystemSettingInterface) => ({
-        ...prev,
-        userPicture: img,
-      }));
-    }
-  };
-
-  const cropOnWheel = async (event: React.WheelEvent<HTMLDivElement>) => {
-    if (isSystemSetting.pictureCover) {
-      const min = 0;
-      const max = 100;
-      const y = event.deltaY;
-
-      let newSize: number;
-
-      if (y > 0) {
-        newSize = isSystemSetting.cropY + 10;
-      } else {
-        newSize = isSystemSetting.cropY - 10;
-      }
-
-      const value = Math.max(min, Math.min(max, newSize));
-
-      return setSystemSetting((prev: SystemSettingInterface) => ({
-        ...prev,
-        cropY: value,
-      }));
-    }
-  };
-
-  const [play, setPlay] = useState(true);
-  const onStartGame = () => {
-    setPlay(true);
-  };
-
-  const Game = dynamic(() => import("./(components)/game/page"), {
-    ssr: false, // Désactive le rendu côté serveur pour ce composant
-  });
-
-  useEffect(() => {
-    const isMobileDevice = () => {
-      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      );
-    };
-
-    // Utilisation de la fonction
-    if (isMobileDevice()) {
-      setSystemDetectMobile(true);
-    } else {
-      setSystemDetectMobile(false);
-    }
-  }, []);
-
-  const [faceApiPicture, setfaceApiPicture] = useState<string[]>([]);
-
-  async function loadModelsAndDetectFaces() {
-    try {
-      setSystemSetting((prev: SystemSettingInterface) => ({
-        ...prev,
-        loader: true,
-      }));
-      const apiUrl = process.env.NEXT_PUBLIC_FACE_APP_API_URL;
-
-      await faceapi.nets.tinyFaceDetector.loadFromUri(
-        `${apiUrl}/assets/models/tiny_face_detector_model/tiny_face_detector_model-weights_manifest.json`
-      );
-      await faceapi.nets.faceLandmark68Net.loadFromUri(
-        `${apiUrl}/assets/models/face_landmark_68_model/face_landmark_68_model-weights_manifest.json`
-      );
-      await faceapi.nets.faceRecognitionNet.loadFromUri(
-        `${apiUrl}/assets/models/face_recognition_model/face_recognition_model-weights_manifest.json`
-      );
-      if (!isSystemSetting.userPicture) return;
-      const img = new window.Image();
-      img.src = isSystemSetting.userPicture;
-      img.onload = async () => {
-        const canvas = document.createElement("canvas");
-        const context = canvas.getContext("2d", { willReadFrequently: true });
-        if (!context) {
-          toast.error(
-            "Aucun visage détecté ( essayé une autre photo de profil )."
-          );
-          return setSystemSetting((prev: SystemSettingInterface) => ({
-            ...prev,
-            loader: false,
-          }));
-        }
-
-        const detections = await faceapi
-          .detectAllFaces(img, new faceapi.TinyFaceDetectorOptions())
-          .withFaceLandmarks();
-
-        if (detections.length === 0) {
-          toast.error(
-            "Aucun visage détecté ( essayé une autre photo de profil )."
-          );
-          return setSystemSetting((prev: SystemSettingInterface) => ({
-            ...prev,
-            loader: false,
-          }));
-        } else {
-          const updatedFaceVisible: Promise<string>[] = detections.map(
-            (detection) => {
-              return new Promise((resolve, reject) => {
-                try {
-                  // Créer un nouveau canvas pour chaque détection
-                  const canvas = document.createElement("canvas");
-                  const context = canvas.getContext("2d", {
-                    willReadFrequently: true,
-                  });
-
-                  if (!context) {
-                    setSystemSetting((prev: SystemSettingInterface) => ({
-                      ...prev,
-                      loader: false,
-                    }));
-                    reject("Failed to get canvas context.");
-                    return;
-                  }
-
-                  // Définir les dimensions du canvas en fonction de la zone de recadrage
-                  const cropWidth = detection.detection.box.width;
-                  const cropHeight = detection.detection.box.height;
-                  canvas.width = cropWidth;
-                  canvas.height = cropHeight;
-
-                  // Dessiner la zone de l'image recadrée dans le canvas
-                  context.drawImage(
-                    img,
-                    detection.detection.box.x, // X de la source
-                    detection.detection.box.y, // Y de la source
-                    cropWidth, // Largeur de la source
-                    cropHeight, // Hauteur de la source
-                    0, // X de la destination
-                    0, // Y de la destination
-                    cropWidth, // Largeur de la destination
-                    cropHeight // Hauteur de la destination
-                  );
-
-                  // Obtenir l'image recadrée sous forme d'URL base64
-                  const croppedImageUrl = canvas.toDataURL();
-
-                  // Résoudre la promesse avec l'image recadrée
-                  resolve(croppedImageUrl);
-                } catch (error) {
-                  reject(error); // Gérer les erreurs
-                }
-              });
-            }
-          );
-
-          // Traiter toutes les promesses une fois qu'elles sont résolues
-          Promise.all(updatedFaceVisible)
-            .then((croppedImages) => {
-              //console.log(1);
-
-              setSystemSetting((prev: SystemSettingInterface) => ({
-                ...prev,
-                loader: false,
-              }));
-              setfaceApiPicture(croppedImages); // Mettre à jour l'état avec les images recadrées
-            })
-            .catch(() => {
-              setSystemSetting((prev: SystemSettingInterface) => ({
-                ...prev,
-                loader: false,
-              }));
-            });
-        }
-      };
-    } catch (error) {
-      throw new Error("Erreur lors de la détection des visages");
-    }
-  }
-
   const [isNavbarVisible, setNavbarVisible] = useState(true);
-  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [isClient, setIsClient] = useState(false); // État pour vérifier si on est côté client
   const scrollThreshold = 50; // Niveau de défilement à partir duquel masquer la barre de navigation
 
   useEffect(() => {
+    setIsClient(true); // On est côté client, donc on peut accéder à `window`
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return; // Ne pas exécuter le code si ce n'est pas côté client
+
     const handleScroll = () => {
-      if (!play) return;
       const currentScrollPos = window.pageYOffset;
       const scrollingDown = prevScrollPos < currentScrollPos;
 
@@ -437,7 +193,7 @@ export default function Home() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [prevScrollPos, play]);
+  }, [prevScrollPos, isClient]); // Ajoutez `isClient` comme dépendance
 
   const BestProject = Data_Realisation_Personnel.find(
     (el) => el.id === 7482587
@@ -573,8 +329,7 @@ export default function Home() {
             backgroundImage: `url(${isSystemSetting.pictureCover})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            transition: "300ms",
-            backgroundPosition: `50% ${isSystemSetting.cropY}%`,
+            backgroundPosition: "50% 50%",
           }}
         />
 
@@ -939,335 +694,12 @@ export default function Home() {
               </Tabs>
             </div>
           </section>
-
-          <section className="p-0">
-            <div className="container mx-auto px-4 md:px-6 lg:px-8">
-              <div className="flex justify-center py-8">
-                <h2 className="text-white text-4xl font-bold bg-[#1e293b] dark:bg-black p-4 rounded-lg shadow-2xl">
-                  Sandbox
-                </h2>
-              </div>
-
-              <div className="flex justify-center w-full" ref={SandBoxRef}>
-                <Card className="bg-white dark:bg-black mb-8 max-w-[500px]">
-                  <CardHeader className="p-4">
-                    <CardTitle className="text-black dark:text-white">
-                      Sandbox ID
-                    </CardTitle>
-                    <CardDescription className="text-slate-800 dark:text-white">
-                      Ceci permet simplement de personalisé la sandbox.{" "}
-                      <span className="text-[#3b82f6]">
-                        ( rien n'est enregistrer et cette option est falcultatif
-                        )
-                      </span>
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="p-2 space-y-4 flex flex-col items-center justify-center">
-                    <RemoveScroll
-                      enabled={isSystemSetting.scroll}
-                      removeScrollBar={false}
-                      className="w-full"
-                    >
-                      <Button
-                        variant="default"
-                        className="w-full mb-4"
-                        onClick={handleResetSystem}
-                      >
-                        reset all
-                        <LuRefreshCcw className="ml-2" />
-                      </Button>
-                      <div
-                        className="relative w-full group cursor-pointer"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleButtonClickImport(fileInputRef.current);
-                        }}
-                        onMouseEnter={() => {
-                          if (systemDetectMobile) return;
-                          setSystemSetting((prev: SystemSettingInterface) => ({
-                            ...prev,
-                            scroll: true,
-                          }));
-                        }}
-                        onMouseLeave={() => {
-                          if (systemDetectMobile) return;
-                          setSystemSetting((prev: SystemSettingInterface) => ({
-                            ...prev,
-                            scroll: false,
-                          }));
-                        }}
-                        onWheel={(e) => {
-                          if (systemDetectMobile) return;
-                          cropOnWheel(e);
-                        }}
-                        onContextMenu={(e) => {
-                          e.preventDefault();
-                          setSrcImg(isSystemSetting.pictureCover);
-                        }}
-                      >
-                        <div
-                          className="CoverImage FlexEmbed FlexEmbed--2by1"
-                          style={{
-                            width: "100%",
-                            backgroundImage: `url(${isSystemSetting.pictureCover})`,
-                            backgroundPosition: `50% ${isSystemSetting.cropY}%`,
-                            borderRadius: 0,
-                          }}
-                        />
-                        <div className="absolute top-0 left-0 w-full h-full transition group-hover:bg-[#000000]/75 flex flex-col justify-center items-center gap-2">
-                          <Button
-                            variant="default"
-                            className="transition opacity-0 group-hover:opacity-100"
-                          >
-                            Modifier
-                            <LuPen className="ml-2" />
-                          </Button>
-                        </div>
-                      </div>
-                    </RemoveScroll>
-                    <Slider
-                      value={[isSystemSetting.cropY]}
-                      max={100}
-                      step={10}
-                      onValueChange={(e: number[]) => {
-                        setSystemSetting((prev: SystemSettingInterface) => ({
-                          ...prev,
-                          cropY: e[0],
-                        }));
-                      }}
-                    />
-                    <div
-                      className="relative w-40 group cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleButtonClickImport(fileInputRef2.current);
-                      }}
-                      onContextMenu={(e) => {
-                        e.preventDefault();
-                        setSrcImg(isSystemSetting.userPicture);
-                      }}
-                    >
-                      <img
-                        src={isSystemSetting.userPicture}
-                        alt=""
-                        className="rounded-full w-40 h-40 object-cover hover:scale-95 hover:cursor-pointer"
-                        onMouseDown={(e) => e.preventDefault()}
-                        onDragStart={(e) => e.preventDefault()}
-                        onContextMenu={(e) => e.preventDefault()}
-                      />
-                      <div className="absolute rounded-full top-0 left-0 w-full h-full transition group-hover:bg-[#000000]/75 flex justify-center items-center">
-                        <Button
-                          variant="default"
-                          className="transition opacity-0 group-hover:opacity-100"
-                        >
-                          Modifier
-                          <LuPen className="ml-2" />
-                        </Button>
-                      </div>
-                    </div>
-                    <Input
-                      className="text-black dark:text-white"
-                      onBlur={(e) => {
-                        if (isSystemSetting.pseudo === "") {
-                          setSystemSetting((prev: SystemSettingInterface) => ({
-                            ...prev,
-                            pseudo: "defaultUser",
-                          }));
-                        }
-                      }}
-                      onChange={(e) => {
-                        setSystemSetting((prev: SystemSettingInterface) => ({
-                          ...prev,
-                          pseudo: e.target.value,
-                        }));
-                      }}
-                      value={isSystemSetting.pseudo}
-                      type="text"
-                      placeholder="( User )"
-                    />
-                  </CardContent>
-                </Card>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {[...DataDemoVideoComposents, ...Data_Realisation_Personnel]
-                  .filter((el) => el.sandBox === true)
-                  ?.map((el, index) => (
-                    <Card
-                      key={index}
-                      className="bg-white dark:bg-black border-none flex flex-col justify-between items-center"
-                    >
-                      <CardHeader className="w-full">
-                        <CardTitle className="text-black dark:text-white">
-                          {el.title}
-                        </CardTitle>
-                        <CardDescription className="text-slate-800 dark:text-white">
-                          {el.description}
-                        </CardDescription>
-                        <div className="flex gap-2 mt-4">
-                          {el.platforms?.map((el: any, index: any) => (
-                            <Badge variant="default" key={index}>
-                              {el}
-                            </Badge>
-                          ))}
-                        </div>
-                      </CardHeader>
-                      <CardContent className="flex justify-center">
-                        {el.image && (
-                          <img
-                            className="max-h-[200px]"
-                            src={el.image.src}
-                            onMouseDown={(e) => e.preventDefault()}
-                            onDragStart={(e) => e.preventDefault()}
-                            onContextMenu={(e) => e.preventDefault()}
-                            onClick={() => {
-                              setSrcImg(el.image.src);
-                            }}
-                          />
-                        )}
-                      </CardContent>
-                      <CardContent className="w-full flex gap-2 flex-wrap">
-                        {el.languages?.map((language: any, index: any) => (
-                          <Badge
-                            variant="default"
-                            className="text-white"
-                            key={index}
-                            style={{ background: language.color }}
-                          >
-                            {language.name}
-                          </Badge>
-                        ))}
-                      </CardContent>
-                      <CardContent className="w-full">
-                        {el.sandBoxInfo && (
-                          <div className="text-[#f59e0b]">{el.sandBoxInfo}</div>
-                        )}
-                      </CardContent>
-                      <CardFooter className="w-[100%]">
-                        <Button
-                          className="w-[100%]"
-                          onClick={() => {
-                            if (el.id === 42575874) {
-                              setSrcImg(isSystemSetting.pictureCover);
-                            }
-                            if (el.id === 974325) {
-                              setPlay(false);
-                              return toast(
-                                "Certaines parties de la page seront inaccessibles jusqu’à la fermeture du jeu.",
-                                {
-                                  icon: "🙂",
-                                }
-                              );
-                            }
-                            if (el.id === 5487375) {
-                              SandBoxRef.current?.scrollIntoView({
-                                behavior: "smooth",
-                              });
-                            }
-                            if (el.id === 7458278) {
-                              return toast("Rendez-vous sur Kitsune-Studio.", {
-                                icon: "🙂",
-                              });
-                            }
-                            if (el.id === 656154) {
-                              if (
-                                isSystemSetting.userPicture ===
-                                imgDefaultUser.src
-                              )
-                                return toast.error(
-                                  "Utilisé une image de profile avec la SandBox ID et revenez ici."
-                                );
-                              loadModelsAndDetectFaces();
-                            }
-                            if (el.id === 7482587) {
-                              return toast.error(
-                                "Non disponible pour le moment."
-                              );
-                            }
-                          }}
-                        >
-                          Essayez l’option
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  ))}
-              </div>
-            </div>
-
-            {!play && (
-              <div className="flex justify-center items-center min-h-screen">
-                <Game
-                  onClick={onStartGame}
-                  userPseudo={isSystemSetting.pseudo}
-                  userImg={isSystemSetting.userPicture}
-                  userLevel={isSystemSetting.levelUser}
-                />
-              </div>
-            )}
-            <Dialog
-              open={faceApiPicture.length > 0}
-              onOpenChange={(e: boolean) => {
-                if (!e) {
-                  setfaceApiPicture([]);
-                }
-              }}
-            >
-              <DialogContent className="h-[85vh] w-[98%] max-w-[1400px] flex flex-col justify-start p-2 overflow-clip">
-                <DialogHeader>
-                  <DialogTitle>Face API</DialogTitle>
-                  <DialogDescription>
-                    Face api à détecté {faceApiPicture.length} visages sur votre
-                    image.
-                  </DialogDescription>
-                </DialogHeader>
-                <ScrollArea className="h-full p-4">
-                  <div className="container mx-auto px-4 py-8">
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                      {faceApiPicture?.map((img: string, index: number) => (
-                        <div
-                          className="flex flex-col items-center gap-4"
-                          key={index}
-                        >
-                          <img
-                            src={img}
-                            className="rounded w-full h-full object-cover"
-                            onMouseDown={(e) => e.preventDefault()}
-                            onDragStart={(e) => e.preventDefault()}
-                            onContextMenu={(e) => e.preventDefault()}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </ScrollArea>
-              </DialogContent>
-            </Dialog>
-          </section>
         </main>
-        <footer className="bg-[#0f172a] dark:bg-black text-primary-foreground mt-8 px-4 lg:px-6 py-6 flex items-center justify-between">
+        <footer className="bg-[#0f172a] dark:bg-black text-primary-foreground px-4 lg:px-6 py-6 flex items-center justify-between">
           <p className="text-sm text-white">
             &copy; 2024 {User.lastname} {User.firstname}. All rights reserved.
           </p>
         </footer>
-
-        <Input
-          id="picture"
-          type="file"
-          ref={fileInputRef}
-          multiple={false}
-          style={{ display: "none" }}
-          accept="image/jpeg, image/png"
-          onChange={handleChangeCover}
-        />
-        <Input
-          id="picture"
-          type="file"
-          ref={fileInputRef2}
-          multiple={false}
-          style={{ display: "none" }}
-          accept="image/jpeg, image/png"
-          onChange={handleChangeUser}
-        />
       </div>
       <LoaderApp name={""} open={isSystemSetting.loader} />
       <ViewerImage srcImg={srcImg} setSrcImg={setSrcImg} />

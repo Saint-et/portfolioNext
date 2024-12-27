@@ -43,6 +43,8 @@ const nextConfig = {
       use: ['@svgr/webpack'],
     });
 
+
+
     //// Règle pour gérer d'autres types d'images
     //config.module.rules.push({
     //  test: /\.(png|jpe?g|jpg|gif|webp)$/i,
@@ -51,6 +53,11 @@ const nextConfig = {
 
     return config;
   },
+
+
+  //output: 'export', // Permet l'exportation statique
+  //basePath: process.env.NODE_ENV === 'production' ? '/portfolioNext' : '',
+  //assetPrefix: process.env.NODE_ENV === 'production' ? '/portfolioNext/' : '',
 };
 
 

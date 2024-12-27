@@ -1,3 +1,5 @@
+"use client";
+
 import { LucideLoaderCircle } from "lucide-react";
 
 interface LoaderAppProps {

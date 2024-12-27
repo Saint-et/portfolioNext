@@ -1,4 +1,4 @@
-import banner from '../assets/images/10339293_18338173.jpg';
+import banner from '../assets/images/158741998_11d6f99f-dbd7-48ef-8b98-bfec076e7421.jpg';
 import bannerAdd from '../assets/images/8620.jpg';
 
 // User
@@ -81,6 +81,7 @@ import Io from '../assets/realisation/Socket_io.png';
 // sandbox
 import viewerImageImport from '../assets/viewer-image/2024-12-03132308.jpg';
 import waifu2xImport from '../assets/waifu2x/slide.png';
+import waifu2xCompareImport from '../assets/waifu2x/waifu-comparaison.png';
 import faceApiImport from '../assets/face-api/1_fQTI8aFJLrIBt0GoGF78xA.jpg';
 //___
 // formation
@@ -106,7 +107,7 @@ export const User = {
     telephone: '0680709681',
     email: 'meddysaintetienne@gmail.com',
     address: "33400 Talence, Bordeaux, France",
-    time: "Lun - Ven : 9h00 - 18h00"
+    time: "Disponible"
 };
 //___
 export const FormationData = [
@@ -129,9 +130,15 @@ export const DataDemoVideoComposents = [
         title: 'Messagerie',
         image: EventvImg5,
         description: "Messagerie en direct.",
-        video: "/assets/assets/eventv/messagerie2023-04-2606-24-17.mp4",
+        video: "https://youtube.com/shorts/oBeaKOu1_b4",
         link: 'au',
-        data: `Le projet vise à créer un mini jeu ou il est possible de recevoir des récompence à la fin des niveau.`,
+        data: {
+            presentation: `La messagerie en direct permet d'envoyer et de recevoir des messages instantanément grâce à Socket.io.`,
+            li: [
+                `Directement : Pas besoin d'actualiser la page grâce à Socket.io, qui permet d'envoyer et de recevoir des données en temps réel.`,
+            ],
+            conclusion: `Pendant mon projet personnel (Artvibe), j'ai souhaité intégrer une messagerie. Après quelques recherches, j'ai découvert Socket.io, une bibliothèque qui permet d'envoyer et de recevoir des données sans avoir besoin d'actualiser la page.`
+        },
         imageProjet: [
             EventvImg5
         ],
@@ -145,8 +152,6 @@ export const DataDemoVideoComposents = [
         platforms: [
             'pc', 'mobile'
         ],
-        sandBox: false,
-        sandBoxInfo: "",
     }, {
         id: 656154,
         title: "Reconnaissance faciale ( IA: Face-api )",
@@ -154,7 +159,13 @@ export const DataDemoVideoComposents = [
         description: "Detection facial par ia. ( Il s’agit d’un modèle pré-entraîné que j’ai téléchargé )",
         video: "https://youtu.be/B21A7ohHvz4",
         link: 'au',
-        data: `Un model d'IA permetent de detecter des visage et autre.`,
+        data: {
+            presentation: `La détection faciale par IA (IA : Face-api) est un modèle pré-entraîné qui permet de détecter des visages, des expressions faciales, et d'autres caractéristiques du visage en temps réel. ( Il s’agit d’un modèle pré-entraîné que j’ai téléchargé )`,
+            li: [
+                `Detection facial : La détection faciale permet de localiser des visages sur des images, des vidéos, et d'autres types de contenu visuel en identifiant leur position exacte dans la scène.`,
+            ],
+            conclusion: `J'ai souhaité ajouter quelques fonctionnalités intéressantes basées sur l'IA dans mon projet personnel (Kitsune-studio).`
+        },
         imageProjet: [
             faceApiImport
         ],
@@ -166,16 +177,20 @@ export const DataDemoVideoComposents = [
         platforms: [
             'pc', 'mobile'
         ],
-        sandBox: true,
-        sandBoxInfo: "Utilisé une image de profile avec la SandBox ID et revenez ici.",
     }, {
         id: 5487375,
         title: "Contrôle de font d'écrant",
         image: EventvImg4,
         description: "Possibilité de contrôler le fond d’écran avec la molette de la souris.",
-        video: "/assets/assets/eventv/arriereplan2023-04-2606-16-04.mp4",
+        video: "https://youtu.be/JjWB3ialDpY",
         link: 'au',
-        data: `Le projet vise à créer un mini jeu ou il est possible de recevoir des récompence à la fin des niveau.`,
+        data: {
+            presentation: `Le contrôle de fond d'écran permet de recadrer une image de manière naturelle, en ajustant son cadrage pour mettre en valeur l'objet ou la zone souhaitée tout en conservant un aspect esthétique.`,
+            li: [
+                `Contrôle de font d'écrant : Le contrôle de fond d'écran permet de recadrer une image à l'intérieur de son conteneur, en ajustant l'affichage de l'image pour qu'elle s'adapte parfaitement à l'espace disponible tout en maintenant ses proportions.`,
+            ],
+            conclusion: `On peut retrouver cette fonctionnalité sous une autre forme d'utilisation dans mon projet personnel (Kitsune-studio), où elle permet de recadrer les images de manière optimale dans leur conteneur.`
+        },
         imageProjet: [
             EventvImg4
         ],
@@ -186,16 +201,23 @@ export const DataDemoVideoComposents = [
         platforms: [
             'pc'
         ],
-        sandBox: true,
-        sandBoxInfo: "il est possible de l'essayer dans sandbox id sur l'image de couverture.",
     }, {
         id: 42575874,
         title: "Visionneur d’image",
         image: viewerImageImport,
         description: "le visionneur d’image possède quelque fonctionnalité en plus pour une meilleur utilisation.",
-        video: "/assets/assets/viewer-image/viewer-image2024-12-03123019.mp4",
+        video: "https://youtu.be/CyrPoVEH6E8",
         link: 'au',
-        data: `Le projet vise à créer un mini jeu ou il est possible de recevoir des récompence à la fin des niveau.`,
+        data: {
+            presentation: `Le visionneur d’image permet de zoomer et de déplacer une image pour en avoir un meilleur aperçu, offrant ainsi un contrôle optimal sur l'affichage et la navigation. Il utilise la totalité de la fenêtre du navigateur et propose des commandes de raccourci, ainsi qu'un tableau de bord pour rendre l'expérience plus fluide et interactive.`,
+            li: [
+                `Clavier C - Mobile glissez à droite : Affiche toutes les commandes.`,
+                `Clavier D - Mobile [non disponible] : Affiche le tableau de bord.`,
+                `Clavier F - Mobile glissez à gauche : Applique un filtre (contraste, saturation) sur l'image pour améliorer les couleurs.`,
+                `Clavier Échap - Mobile glissez haut/bas : Ferme le visionneur d’image.`,
+            ],
+            conclusion: `On peut retrouver cette fonctionnalité dans ce portfolio en cliquant sur une image sur la page d'accueil, permettant de zoomer et de déplacer l'image pour en avoir un meilleur aperçu.`
+        },
         imageProjet: [
             viewerImageImport
         ],
@@ -209,17 +231,23 @@ export const DataDemoVideoComposents = [
         platforms: [
             'pc', 'mobile'
         ],
-        sandBox: true,
-        sandBoxInfo: "Une fois ouvert appuyé sur C pour affiché les commandes.",
     }, {
         id: 7458278,
         title: 'Débruiter et redimensionné ( IA: Waifu2x )',
         image: waifu2xImport,
         description: "Un model d'inteligence artificiel permetant de débruiter les images (photos) et les agrandir sans perdre en qualiter. ( Il s’agit d’un modèle pré-entraîné que j’ai téléchargé )",
-        video: "/assets/assets/waifu2x/2024-12-03141849.mp4",
+        video: "https://youtu.be/p6r_l8beMec",
         link: 'au',
-        data: `Ce composent est intégrer dans mon projet Kitsune-studio.`,
+        data: {
+            presentation: `(IA : Waifu2x) est un modèle d'IA pré-entraîné qui permet de débruiter et de redimensionner des images tout en conservant leur qualité. ( Il s’agit d’un modèle pré-entraîné que j’ai téléchargé )`,
+            li: [
+                `Débruiter : Améliore la qualité des images en réduisant le bruit numérique.`,
+                `Redimensionnement : Agrandit une image jusqu'à 2 fois sa taille initiale sans perte de qualité.`,
+            ],
+            conclusion: `On peut retrouver cette fonctionnalité dans mon projet personnel (Kitsune-studio), une application spécialement dédiée à la retouche d'image.`
+        },
         imageProjet: [
+            waifu2xCompareImport,
             waifu2xImport
         ],
         languages: [
@@ -230,8 +258,6 @@ export const DataDemoVideoComposents = [
         platforms: [
             'pc', 'mobile'
         ],
-        sandBox: true,
-        sandBoxInfo: "Disponible dans kitsune-studio.",
     }
 ]
 
@@ -243,7 +269,7 @@ export const Data_Realisation_Personnel = [
         title: 'Maquette site dropshipping',
         image: DropshippingImgImport,
         description: "Création d’une maquette de site web dropshipping.",
-        video: "/assets/assets/dropshipping/2024-12-09043043.mp4",
+        video: "https://youtu.be/Q3Kg34T5BKQ",
         youtubeDemo: '',
         link: 'au',
         data: {
@@ -269,8 +295,6 @@ export const Data_Realisation_Personnel = [
         platforms: [
             'pc', 'mobile'
         ],
-        sandBox: false,
-        sandBoxInfo: "",
     },
     {
         id: 7482587,
@@ -310,15 +334,13 @@ export const Data_Realisation_Personnel = [
         platforms: [
             'pc'
         ],
-        sandBox: true,
-        sandBoxInfo: "Actuellement en developement il y a que les demo video de disponible.",
     },
     {
         id: 974325,
         title: 'Werewolf attack',
         description: "Mini jeu pour le web",
         image: WereWolfImg,
-        video: "/assets/assets/werewolf/2024-12-03102324.mp4",
+        video: "https://youtu.be/HTzdIOUUMAA",
         youtubeDemo: '',
         link: 'au',
         data: {
@@ -340,8 +362,6 @@ export const Data_Realisation_Personnel = [
         platforms: [
             'pc'
         ],
-        sandBox: true,
-        sandBoxInfo: "Demo de test",
     },
     {
         id: 8328386,
@@ -378,8 +398,6 @@ export const Data_Realisation_Personnel = [
         platforms: [
             'pc', 'mobile'
         ],
-        sandBox: false,
-        sandBoxInfo: "",
     }, {
         id: 6563858,
         title: 'Event-v2',
@@ -412,8 +430,6 @@ export const Data_Realisation_Personnel = [
         platforms: [
             'pc', 'mobile'
         ],
-        sandBox: false,
-        sandBoxInfo: "",
     }, {
         id: 75435473,
         title: 'Event-v1 Mobile',
@@ -446,8 +462,6 @@ export const Data_Realisation_Personnel = [
         platforms: [
             'mobile'
         ],
-        sandBox: false,
-        sandBoxInfo: "",
     }
 ]
 //___
