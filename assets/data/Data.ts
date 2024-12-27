@@ -1,92 +1,92 @@
-import banner from '../assets/images/158741998_11d6f99f-dbd7-48ef-8b98-bfec076e7421.jpg';
-import bannerAdd from '../assets/images/8620.jpg';
+import banner from '@/public/assets/assets/images/158741998_11d6f99f-dbd7-48ef-8b98-bfec076e7421.jpg';
+import bannerAdd from '@/public/assets/assets/images/8620.jpg';
 
 // User
-import imgUser from '../assets/img_user/IMG_5359-FR.jpg';
-import imgDefaultUserImport from '../assets/img_user/360_F_587766653_PkBNyGx7mQh9l1XXPtCAq1lBgOsLl6xH.jpg';
+import imgUser from '@/public/assets/assets/img_user/IMG_5359-FR.jpg';
+import imgDefaultUserImport from '@/public/assets/assets/img_user/360_F_587766653_PkBNyGx7mQh9l1XXPtCAq1lBgOsLl6xH.jpg';
 //___
 // Realisation
-import KitsuneImg from '../assets/kitsune-studio/Kitsune-Studio-1730784700020.png';
-import KitsuneImg2 from '../assets/kitsune-studio/Capturedécran2024-11-30043521.png';
-import KitsuneImg3 from '../assets/kitsune-studio/Capturedécran2024-11-30041025.png';
-import KitsuneImg4 from '../assets/kitsune-studio/Capturedécran2024-11-30045014.png';
-import PicVImg from '../assets/pic-v/logo.png';
-import WereWolfImg from '../assets/werewolf/2151121007.jpg';
-import hotSauce from '../assets/realisation/hot-sauce.jpg';
-import kanapImg from '../assets/realisation/kanap.png';
-import Ohmyfood from '../assets/realisation/seo.png';
-import Groupomania from '../assets/realisation/groupomania.png';
-import ChouetteAgence from '../assets/realisation/MetaImageComp.jpg';
-import ChouetteAgence2 from '../assets/realisation/logo-google-analytics-e1537095603731.png';
-import ChouetteAgence3 from '../assets/realisation/google-analytics-g4-dashboard.webp';
-import ChouetteAgence4 from '../assets/chouette-agence/2024-12-09-053640.png';
-import DropshippingImgImport from '../assets/dropshipping/logo.png';
-import DropshippingImg1Import from '../assets/dropshipping/2024-12-09-044238.png';
-import DropshippingImg2Import from '../assets/dropshipping/2024-12-09-044259.png';
-import DropshippingImg3Import from '../assets/dropshipping/2024-12-09-044312.png';
+import KitsuneImg from '@/public/assets/assets/kitsune-studio/Kitsune-Studio-1730784700020.png';
+import KitsuneImg2 from '@/public/assets/assets/kitsune-studio/Capturedécran2024-11-30043521.png';
+import KitsuneImg3 from '@/public/assets/assets/kitsune-studio/Capturedécran2024-11-30041025.png';
+import KitsuneImg4 from '@/public/assets/assets/kitsune-studio/Capturedécran2024-11-30045014.png';
+import PicVImg from '@/public/assets/assets/pic-v/logo.png';
+import WereWolfImg from '@/public/assets/assets/werewolf/2151121007.jpg';
+import hotSauce from '@/public/assets/assets/realisation/hot-sauce.jpg';
+import kanapImg from '@/public/assets/assets/realisation/kanap.png';
+import Ohmyfood from '@/public/assets/assets/realisation/seo.png';
+import Groupomania from '@/public/assets/assets/realisation/groupomania.png';
+import ChouetteAgence from '@/public/assets/assets/realisation/MetaImageComp.jpg';
+import ChouetteAgence2 from '@/public/assets/assets/realisation/logo-google-analytics-e1537095603731.png';
+import ChouetteAgence3 from '@/public/assets/assets/realisation/google-analytics-g4-dashboard.webp';
+import ChouetteAgence4 from '@/public/assets/assets/chouette-agence/2024-12-09-053640.png';
+import DropshippingImgImport from '@/public/assets/assets/dropshipping/logo.png';
+import DropshippingImg1Import from '@/public/assets/assets/dropshipping/2024-12-09-044238.png';
+import DropshippingImg2Import from '@/public/assets/assets/dropshipping/2024-12-09-044259.png';
+import DropshippingImg3Import from '@/public/assets/assets/dropshipping/2024-12-09-044312.png';
 //___
 // Booki
-import Booki from '../assets/booki/Booki.png';
-import Booki1Import from '../assets/booki/2024-12-09052825.png';
-import Booki2Import from '../assets/booki/2024-12-09052902.png';
-import Booki3Import from '../assets/booki/2024-12-09052921.png';
+import Booki from '@/public/assets/assets/booki/Booki.png';
+import Booki1Import from '@/public/assets/assets/booki/2024-12-09052825.png';
+import Booki2Import from '@/public/assets/assets/booki/2024-12-09052902.png';
+import Booki3Import from '@/public/assets/assets/booki/2024-12-09052921.png';
 //___
 // hotSauce
-import hotSauce1 from '../assets/img_hotSauce/home.png';
-import hotSauce2 from '../assets/img_hotSauce/produit.png';
-import hotSauce3 from '../assets/img_hotSauce/form.png';
+import hotSauce1 from '@/public/assets/assets/img_hotSauce/home.png';
+import hotSauce2 from '@/public/assets/assets/img_hotSauce/produit.png';
+import hotSauce3 from '@/public/assets/assets/img_hotSauce/form.png';
 //___
 // kanapImg
-import kanapImg1 from '../assets/kanapImg/kanap1.png';
-import kanapImg2 from '../assets/kanapImg/kanap2.png';
-import kanapImg3 from '../assets/kanapImg/kanap3.png';
+import kanapImg1 from '@/public/assets/assets/kanapImg/kanap1.png';
+import kanapImg2 from '@/public/assets/assets/kanapImg/kanap2.png';
+import kanapImg3 from '@/public/assets/assets/kanapImg/kanap3.png';
 //___
 // Ohmyfood
-import Ohmyfood1 from '../assets/Ohmyfood/Ohmyfood1.png';
-import Ohmyfood2 from '../assets/Ohmyfood/Ohmyfood2.png';
+import Ohmyfood1 from '@/public/assets/assets/Ohmyfood/Ohmyfood1.png';
+import Ohmyfood2 from '@/public/assets/assets/Ohmyfood/Ohmyfood2.png';
 //___
 // Groupomania
-import Groupomania1 from '../assets/Groupomania/Groupomania1.png';
-import Groupomania2 from '../assets/Groupomania/Groupomania2.png';
-import Groupomania3 from '../assets/Groupomania/Groupomania3.png';
+import Groupomania1 from '@/public/assets/assets/Groupomania/Groupomania1.png';
+import Groupomania2 from '@/public/assets/assets/Groupomania/Groupomania2.png';
+import Groupomania3 from '@/public/assets/assets/Groupomania/Groupomania3.png';
 //___
 // Realisation_Personnel
-import Eventv2 from '../assets/realisation/vieux-fond-noir-texture-grunge-fond-ecran-sombre-tableau-noir-tableau-noir-mur-salle.jpg';
-import EventvmobileImg1 from '../assets/realisation/logo_eventv1Mobile.png';
+import Eventv2 from '@/public/assets/assets/realisation/vieux-fond-noir-texture-grunge-fond-ecran-sombre-tableau-noir-tableau-noir-mur-salle.jpg';
+import EventvmobileImg1 from '@/public/assets/assets/realisation/logo_eventv1Mobile.png';
 //___
 // Eventv1Mobile
-import Eventvmobile1 from '../assets/eventv/eventmobile.jpg';
+import Eventvmobile1 from '@/public/assets/assets/eventv/eventmobile.jpg';
 //___
 // Eventv2
-import EventvImg4 from '../assets/eventv/ezgif-5-cee98ce57f.gif';
-import EventvImg5 from '../assets/eventv/ezgif-5-610e489276.gif';
-import EventvImg6 from '../assets/eventv/EventvImg1.png';
+import EventvImg4 from '@/public/assets/assets/eventv/ezgif-5-cee98ce57f.gif';
+import EventvImg5 from '@/public/assets/assets/eventv/ezgif-5-610e489276.gif';
+import EventvImg6 from '@/public/assets/assets/eventv/EventvImg1.png';
 //___
 // Experience
-import html5 from '../assets/realisation/html5-icon-1.png';
-import css from '../assets/realisation/CSS.png';
-import tailwindcss from '../assets/realisation/tailwindcss.png';
-import Js from '../assets/realisation/Js.png';
-import Sass from '../assets/realisation/Sass.png';
-import Git from '../assets/realisation/Git.png';
-import React_js from '../assets/realisation/React-icon.png';
-import Next_js from '../assets/realisation/nextjs.jpg';
-import Typescript from '../assets/realisation/typescript.png';
-import Node_js from '../assets/realisation/nodejs.png';
-import Mongo from '../assets/realisation/Mongodb-Transparent.png';
-import Sql from '../assets/realisation/mysql.png';
-import Sequelize from '../assets/realisation/Sequelize.png';
-import Io from '../assets/realisation/Socket_io.png';
+import html5 from '@/public/assets/assets/realisation/html5-icon-1.png';
+import css from '@/public/assets/assets/realisation/CSS.png';
+import tailwindcss from '@/public/assets/assets/realisation/tailwindcss.png';
+import Js from '@/public/assets/assets/realisation/Js.png';
+import Sass from '@/public/assets/assets/realisation/Sass.png';
+import Git from '@/public/assets/assets/realisation/Git.png';
+import React_js from '@/public/assets/assets/realisation/React-icon.png';
+import Next_js from '@/public/assets/assets/realisation/nextjs.jpg';
+import Typescript from '@/public/assets/assets/realisation/typescript.png';
+import Node_js from '@/public/assets/assets/realisation/nodejs.png';
+import Mongo from '@/public/assets/assets/realisation/Mongodb-Transparent.png';
+import Sql from '@/public/assets/assets/realisation/mysql.png';
+import Sequelize from '@/public/assets/assets/realisation/Sequelize.png';
+import Io from '@/public/assets/assets/realisation/Socket_io.png';
 //___
 // sandbox
-import viewerImageImport from '../assets/viewer-image/2024-12-03132308.jpg';
-import waifu2xImport from '../assets/waifu2x/slide.png';
-import waifu2xCompareImport from '../assets/waifu2x/waifu-comparaison.png';
-import faceApiImport from '../assets/face-api/1_fQTI8aFJLrIBt0GoGF78xA.jpg';
+import viewerImageImport from '@/public/assets/assets/viewer-image/2024-12-03132308.jpg';
+import waifu2xImport from '@/public/assets/assets/waifu2x/slide.png';
+import waifu2xCompareImport from '@/public/assets/assets/waifu2x/waifu-comparaison.png';
+import faceApiImport from '@/public/assets/assets/face-api/1_fQTI8aFJLrIBt0GoGF78xA.jpg';
 //___
 // formation
-import formationImageImport from '../assets/images/Blog_logo.jpg';
-import autodidactImageImport from '../assets/images/lieu-travail-ecouteurs-ordinateur-portable-dans-espace-copie-du-soir.jpg';
+import formationImageImport from '@/public/assets/assets/images/Blog_logo.jpg';
+import autodidactImageImport from '@/public/assets/assets/images/lieu-travail-ecouteurs-ordinateur-portable-dans-espace-copie-du-soir.jpg';
 //___
 
 export const bannerBg = banner;
