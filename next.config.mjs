@@ -55,9 +55,9 @@ const nextConfig = {
   },
 
 
-  //output: 'export', // Permet l'exportation statique
-  //basePath: process.env.NODE_ENV === 'production' ? '/portfolioNext' : '',
-  //assetPrefix: process.env.NODE_ENV === 'production' ? '/portfolioNext/' : '',
+  output: 'export', // Permet l'exportation statique
+  basePath: '/portfolioNext',
+  assetPrefix: '/portfolioNext/',
 };
 
 
