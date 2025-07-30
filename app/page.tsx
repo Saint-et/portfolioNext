@@ -358,7 +358,7 @@ export default function Home() {
               </div>
               <div className="space-y-6 drop-shadow-lg">
                 <div className="text-white">
-                  <h2 className="text-6xl">
+                  <h2 className="md:text-4xl lg:text-6xl">
                     {User.lastname}, {User.firstname}
                   </h2>
                   <h2 className="text-5xl">{User.job}</h2>
