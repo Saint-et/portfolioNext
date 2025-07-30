@@ -94,8 +94,8 @@ const CarouselVideo: React.FC<CarouselVideoProps> = (props) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className:"md:hidden"/>
-        <CarouselNext className:"md:hidden"/>
+        <CarouselPrevious className="md:hidden"/>
+        <CarouselNext className="md:hidden"/>
       </Carousel>
     </>
   );
