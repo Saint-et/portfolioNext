@@ -340,7 +340,11 @@ export default function Home() {
           }}
         />
 
-        <main className="flex-1 text-foreground pt-24">
+        <main className="flex-1 text-foreground pt-24" 
+          onClick={() => {
+      setNavbarVisible(false)
+        }}
+          >
           <section className="pb-10">
             <div className="container mx-auto py-12 md:py-16 lg:py-24 px-4 md:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
               <div className="flex items-center justify-center">
